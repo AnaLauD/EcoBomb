@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eco-Bomb: Palabra Explosiva</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Montserrat:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <!-- Background animations -->
+    <div class="bg-pulse"></div>
+
+    <main class="app-container">
+      
+      <!--============================
+             1. SETUP SCREEN
+      =============================-->
+      <section id="setup-screen" class="screen active">
+        <div class="glass-panel">
+          <h1 class="logo-title">ECO-BOMB</h1>
+          <p class="subtitle">La bomba estalla si no hablas rápido</p>
+          
+          <div class="form-group mb-2">
+            <label for="category-input">Categoría de la ronda:</label>
+            <input type="text" id="category-input" placeholder="Ej. Animales, Países, Colores" required>
+          </div>
+
+          <div class="players-setup">
+            <div class="players-header">
+              <h3>Jugadores (Mín 2, Máx 13)</h3>
+              <button id="add-player-btn" class="btn-small">Añadir Jugador</button>
+            </div>
+            <div id="players-list" class="players-grid">
+              <!-- Player inputs will be injected here -->
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button id="start-game-btn" class="btn-primary glow-btn" disabled>Iniciar Partida</button>
+          </div>
+        </div>
+      </section>
+
+      <!--============================
+             2. GAME SCREEN
+      =============================-->
+      <section id="game-screen" class="screen hidden">
+        <header class="game-header">
+          <span class="category-label">Categoría:</span>
+          <h2 id="current-category-display" class="category-text">Animales</h2>
+        </header>
+
+        <div class="game-center">
+          <div class="timer-container">
+            <svg class="timer-ring" width="200" height="200">
+              <circle class="timer-ring-bg" cx="100" cy="100" r="90" />
+              <circle id="timer-ring-progress" class="timer-ring-progress" cx="100" cy="100" r="90" />
+            </svg>
+            <div class="timer-text" id="timer-display">10</div>
+          </div>
+          <div class="player-focus">
+            <h1 id="current-player-name" class="giant-name">JUGADOR</h1>
+          </div>
+        </div>
+
+        <div class="game-footer">
+          <div class="voice-feedback">
+            <span class="mic-icon animate-pulse">🎙️</span>
+            <p id="speech-transcript">Escuchando...</p>
+          </div>
+        </div>
+      </section>
+
+      <!--============================
+             3. RESULTS SCREEN
+      =============================-->
+      <section id="results-screen" class="screen hidden">
+        <div class="explosion-overlay" id="explosion-effect"></div>
+        <div class="glass-panel results-panel">
+          <h1 class="game-over-title">¡BOOM!</h1>
+          <p id="game-over-reason" class="game-over-reason">El tiempo de Carlos se agotó</p>
+          
+          <div class="stats-container">
+            <h3>Estadísticas de Partida</h3>
+            <div class="table-wrapper">
+              <table id="stats-table">
+                <thead>
+                  <tr>
+                    <th>Jugador</th>
+                    <th>Promedio (s)</th>
+                    <th>Mejor (s)</th>
+                    <th>Méritos</th>
+                  </tr>
+                </thead>
+                <tbody id="stats-body">
+                  <!-- Stats rows injected here -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div class="action-row">
+            <button id="restart-btn" class="btn-primary glow-btn">Nueva Ronda (Mismos Jugadores)</button>
+          </div>
+        </div>
+      </section>
+      
+    </main>
+    <script type="module" src="/main.js"></script>
+  </body>
+</html>
